@@ -1,5 +1,4 @@
-// should not be important a page like a component
-// either have it as its own page or make home a component instead
+export const dynamic = "force-dynamic";
 import Home from "@/components/home";
 
 export default function Page() {
