@@ -5,13 +5,7 @@ import Home from "@/components/home";
 import Messages from "@/components/messages";
 export default function Page() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        background: "black",
-      }}
-    >
+    <div className="bg-stone-950 h-screen flex justify-center">
       <Home />
     </div>
   );

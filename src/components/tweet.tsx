@@ -1,34 +1,34 @@
+"use client";
+import { title } from "process";
+import { useState } from "react";
+
 export default function Tweet() {
+  const onButtonClick = () => {
+    let url = "/api/createPost";
+    fetch(url, {
+      headers: { contentType: "application/json" },
+      method: "POST",
+      body: JSON.stringify({ content: tweet, title: "FEIN" }),
+    });
+  };
+  const [tweet, setTweet] = useState("");
+
   return (
-    <div
-      style={{
-        width: "500px",
-        height: "200px",
-        background: "linear-gradient(to bottom, #000080, #1E90FF)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: "0px",
-        overflow: "hidden",
-        border: "1px solid grey",
-      }}
-    >
-      TWEET
+    <div className="bg-stone-100 h-[200px] w-[500px] flex justify-center items-center border-1 border-grey border-radius-0 overflow-hidden">
+      Tweet
       <input
         type="text"
-        style={{
-          width: "400px",
-          height: "50px",
-          background: "white",
-          color: "black",
-          fontSize: "16px",
-          border: "none",
-          outline: "none",
-          padding: "10px",
-          borderRadius: "20px",
-        }}
+        className={
+          "w-[400px] h-[40px] bg-black color-black font-16 border-none outline-none padding-10 border-radius-20"
+        }
         placeholder="What's happening?"
+        value={tweet}
+        onInput={(e) => setTweet(e.currentTarget.value)}
       />
+      <button className={"bg-black"} onClick={onButtonClick}>
+        {" "}
+        Send
+      </button>
     </div>
   );
 }

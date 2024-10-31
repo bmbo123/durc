@@ -1,27 +1,19 @@
 import Tweet from "@/components/tweet";
 import Messages from "@/components/messages";
+import { getPosts } from "@/db/queries/select";
 
-// don't need to put string[] here
-// you already explicitly have it as a string array
-const messages = [
-  "Hello, World!",
-  "Welcome to my website!",
-  "I hope you enjoy your stay!",
-  "Feel free to leave a message!",
-];
-
-export default function Home() {
+// this is a server component that will run on our serer
+export default async function Home() {
+  // we can directly call the database query here in this component
+  // we can do queries here like this
+  // but if we want to create / update data we need an api end point that will be called with fetch
+  let posts = await getPosts();
   return (
-    <div
-      style={{
-        display: "inline",
-        justifyContent: "center",
-        height: "100vh",
-        background: "white",
-      }}
-    >
+    <div className="h-screen bg-stone-950 justify-center">
       <Tweet />
-      <Messages messages={messages} />
+      {posts?.map((post, i) => {
+        return <Messages key={i} message={post.content} name="fein" />;
+      })}
     </div>
   );
 }
