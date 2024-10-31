@@ -18,13 +18,9 @@ export default async function Home() {
             <Messages
               key={i}
               message={post.content}
-              name="fein"
+              name={post.title}
               username={post.username}
-              date={post.date.toLocaleDateString("en-US", {
-                year: "2-digit",
-                month: "2-digit",
-                day: "2-digit",
-              })}
+              date={post.date}
             />
           );
         })}
