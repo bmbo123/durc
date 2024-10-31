@@ -7,7 +7,7 @@ export default async function Home() {
   // we can directly call the database query here in this component
   // we can do queries here like this
   // but if we want to create / update data we need an api end point that will be called with fetch
-  let posts = await getPosts();
+  const posts = await getPosts();
   return (
     <div className="h-screen bg-stone-950 justify-center">
       <Tweet />

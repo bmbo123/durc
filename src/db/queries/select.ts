@@ -1,5 +1,4 @@
 import { db } from "@/db/index";
-import { asc, between, count, eq, getTableColumns, sql } from "drizzle-orm";
 import { postsTable } from "@/db/schema";
 
 // everything you need is here

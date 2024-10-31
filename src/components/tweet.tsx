@@ -1,11 +1,10 @@
 "use client";
-import { date } from "drizzle-orm/mysql-core";
-import { title } from "process";
+
 import { useState } from "react";
 
 export default function Tweet() {
   const onButtonClick = () => {
-    let url = "/api/createPost";
+    const url = "/api/createPost";
     fetch(url, {
       headers: { contentType: "application/json" },
       method: "POST",
