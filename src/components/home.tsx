@@ -9,7 +9,8 @@ export default async function Home() {
   // but if we want to create / update data we need an api end point that will be called with fetch
   const posts = await getPosts();
   return (
-    <div className="h-screen bg-stone-950 align-center flex flex-col justify-center gap-8">
+    <div className="h-screen bg-stone-950 align-center flex flex-col justify-center gap-8 w-[600px]">
+      <h1 className="text-4xl font-bold text-white text-center">FEIN APP</h1>
       <Tweet />
       <div>
         {posts?.map((post, i) => {

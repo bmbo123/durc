@@ -4,8 +4,11 @@ import { SendHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 export default function Tweet() {
   const router = useRouter();
+  const [tweet, setTweet] = useState("");
+
   const onButtonClick = () => {
     const url = "/api/createPost";
+    console.log(tweet);
     fetch(url, {
       headers: { contentType: "application/json" },
       method: "POST",
@@ -15,9 +18,9 @@ export default function Tweet() {
         username: "FEIN",
       }),
     });
+    setTweet("");
     router.refresh();
   };
-  const [tweet, setTweet] = useState("");
 
   return (
     <div className="flex justify-center items-center ">
@@ -28,6 +31,11 @@ export default function Tweet() {
           placeholder="What's happening?"
           value={tweet}
           onInput={(e) => setTweet(e.currentTarget.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onButtonClick();
+            }
+          }}
         />
         <button
           onClick={onButtonClick}
