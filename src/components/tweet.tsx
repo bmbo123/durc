@@ -1,4 +1,5 @@
 "use client";
+import { date } from "drizzle-orm/mysql-core";
 import { title } from "process";
 import { useState } from "react";
 
@@ -8,7 +9,11 @@ export default function Tweet() {
     fetch(url, {
       headers: { contentType: "application/json" },
       method: "POST",
-      body: JSON.stringify({ content: tweet, title: "FEIN" }),
+      body: JSON.stringify({
+        content: tweet,
+        title: "FEIN",
+        username: "FEIN",
+      }),
     });
   };
   const [tweet, setTweet] = useState("");

@@ -12,7 +12,15 @@ export default async function Home() {
     <div className="h-screen bg-stone-950 justify-center">
       <Tweet />
       {posts?.map((post, i) => {
-        return <Messages key={i} message={post.content} name="fein" />;
+        return (
+          <Messages
+            key={i}
+            message={post.content}
+            name="fein"
+            username={post.username}
+            date={post.date.toString()}
+          />
+        );
       })}
     </div>
   );
