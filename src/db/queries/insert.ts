@@ -6,5 +6,5 @@ export async function createUser(data: InsertUser) {
 }
 
 export async function createPost(data: InsertPost) {
-  await db.insert(postsTable).values(data);
+  return await db.insert(postsTable).values(data).returning();
 }

@@ -8,7 +8,6 @@ export default function Tweet() {
 
   const onButtonClick = () => {
     const url = "/api/createPost";
-    console.log(tweet);
     fetch(url, {
       headers: { contentType: "application/json" },
       method: "POST",

@@ -10,7 +10,7 @@ export default async function Home() {
   const posts = await getPosts();
   return (
     <div className="h-screen bg-stone-950 align-center flex flex-col justify-center gap-8 w-[600px]">
-      <h1 className="text-4xl font-bold text-white text-center">FEIN APP</h1>
+      <h1 className="text-4xl font-bold text-white text-center">FEIN AI</h1>
       <Tweet />
       <div>
         {posts?.map((post, i) => {
