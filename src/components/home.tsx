@@ -9,19 +9,25 @@ export default async function Home() {
   // but if we want to create / update data we need an api end point that will be called with fetch
   const posts = await getPosts();
   return (
-    <div className="h-screen bg-stone-950 justify-center">
+    <div className="h-screen bg-stone-950 align-center flex flex-col justify-center gap-8">
       <Tweet />
-      {posts?.map((post, i) => {
-        return (
-          <Messages
-            key={i}
-            message={post.content}
-            name="fein"
-            username={post.username}
-            date={post.date.toString()}
-          />
-        );
-      })}
+      <div>
+        {posts?.map((post, i) => {
+          return (
+            <Messages
+              key={i}
+              message={post.content}
+              name="fein"
+              username={post.username}
+              date={post.date.toLocaleDateString("en-US", {
+                year: "2-digit",
+                month: "2-digit",
+                day: "2-digit",
+              })}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

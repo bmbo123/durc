@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SendHorizontal } from "lucide-react";
 
 export default function Tweet() {
   const onButtonClick = () => {
@@ -18,21 +19,22 @@ export default function Tweet() {
   const [tweet, setTweet] = useState("");
 
   return (
-    <div className="bg-stone-100 h-[200px] w-[500px] flex justify-center items-center border-1 border-grey border-radius-0 overflow-hidden">
-      Tweet
-      <input
-        type="text"
-        className={
-          "w-[400px] h-[40px] bg-black color-black font-16 border-none outline-none padding-10 border-radius-20"
-        }
-        placeholder="What's happening?"
-        value={tweet}
-        onInput={(e) => setTweet(e.currentTarget.value)}
-      />
-      <button className={"bg-black"} onClick={onButtonClick}>
-        {" "}
-        Send
-      </button>
+    <div className="flex justify-center items-center ">
+      <div className="relative flex w-full items-center gap-4">
+        <input
+          type="text"
+          className="w-full h-12 bg-stone-800 px-4 pr-10 text-white font-16 border-none outline-none rounded-lg"
+          placeholder="What's happening?"
+          value={tweet}
+          onInput={(e) => setTweet(e.currentTarget.value)}
+        />
+        <button
+          onClick={onButtonClick}
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none cursor-pointer"
+        >
+          <SendHorizontal color="#d6d6d6" />
+        </button>
+      </div>
     </div>
   );
 }

@@ -11,13 +11,16 @@ export default function Messages({
 }) {
   return (
     <>
-      <div className="w-full p-12 bg-stone-950 flex justify-center border-zinc-800 border-[1px] border-b-0">
+      <div className="flex justify-between items-center w-full">
+        <div>
+          <strong>{username}</strong>, {name}
+        </div>
+        <div className="bg-grey">{date}</div>
+      </div>
+      <hr className="border-zinc-700 h-1 w-full" />
+      <div className="w-full pt-4 pb-8 bg-stone-950 flex justify-start border-zinc-800 border-[0px] border-b-0 border-t-0">
         {message}
       </div>
-      <div className="bg-white">
-        {username}, {name}
-      </div>
-      <div className="bg-grey">{date}</div>
     </>
   );
 }
