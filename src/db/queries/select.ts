@@ -1,5 +1,6 @@
 import { db } from "@/db/index";
 import { postsTable } from "@/db/schema";
+import { desc } from "drizzle-orm";
 
 // everything you need is here
 // https://orm.drizzle.team/docs/tutorials/drizzle-with-vercel
@@ -13,5 +14,9 @@ import { postsTable } from "@/db/schema";
 // get the posts
 // need to add data and then sort by dates later
 export async function getPosts(limit = 10) {
-  return db.select().from(postsTable).limit(limit);
+  return db
+    .select()
+    .from(postsTable)
+    .orderBy(desc(postsTable.date))
+    .limit(limit);
 }
