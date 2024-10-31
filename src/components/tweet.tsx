@@ -6,9 +6,9 @@ export default function Tweet() {
   const router = useRouter();
   const [tweet, setTweet] = useState("");
 
-  const onButtonClick = () => {
+  const onButtonClick = async () => {
     const url = "/api/createPost";
-    fetch(url, {
+    await fetch(url, {
       headers: { contentType: "application/json" },
       method: "POST",
       body: JSON.stringify({
@@ -21,7 +21,7 @@ export default function Tweet() {
 
     setTimeout(() => {
       router.refresh();
-    }, 200);
+    }, 50);
   };
 
   return (
