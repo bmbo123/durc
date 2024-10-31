@@ -18,7 +18,10 @@ export default function Tweet() {
       }),
     });
     setTweet("");
-    router.refresh();
+
+    setTimeout(() => {
+      router.refresh();
+    }, 200);
   };
 
   return (
