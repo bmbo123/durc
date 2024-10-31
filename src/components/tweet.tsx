@@ -1,9 +1,9 @@
 "use client";
-
 import { useState } from "react";
 import { SendHorizontal } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 export default function Tweet() {
+  const router = useRouter();
   const onButtonClick = () => {
     const url = "/api/createPost";
     fetch(url, {
@@ -15,6 +15,7 @@ export default function Tweet() {
         username: "FEIN",
       }),
     });
+    router.refresh();
   };
   const [tweet, setTweet] = useState("");
 
