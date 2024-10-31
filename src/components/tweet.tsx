@@ -2,26 +2,29 @@
 import { useState } from "react";
 import { SendHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { HashLoader } from "react-spinners";
+
 export default function Tweet() {
   const router = useRouter();
   const [tweet, setTweet] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const onButtonClick = async () => {
     const url = "/api/createPost";
+    const content = tweet;
+    setIsLoading(true);
     await fetch(url, {
       headers: { contentType: "application/json" },
       method: "POST",
       body: JSON.stringify({
-        content: tweet,
-        title: "FEIN",
-        username: "FEIN",
+        content: content,
+        title: "My tweet",
+        username: "Anonymous user",
       }),
     });
     setTweet("");
-
-    setTimeout(() => {
-      router.refresh();
-    }, 50);
+    setIsLoading(false);
+    router.refresh();
   };
 
   return (
@@ -39,12 +42,18 @@ export default function Tweet() {
             }
           }}
         />
-        <button
-          onClick={onButtonClick}
-          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none cursor-pointer"
-        >
-          <SendHorizontal color="#d6d6d6" />
-        </button>
+        {isLoading ? (
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none cursor-pointer">
+            <HashLoader color="#d6d6d6" size={20} />
+          </div>
+        ) : (
+          <button
+            onClick={onButtonClick}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white focus:outline-none cursor-pointer"
+          >
+            <SendHorizontal color="#d6d6d6" />
+          </button>
+        )}
       </div>
     </div>
   );
