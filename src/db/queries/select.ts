@@ -13,7 +13,7 @@ import { desc } from "drizzle-orm";
 
 // get the posts
 // need to add data and then sort by dates later
-export async function getPosts(limit = 10) {
+export async function getPosts(limit = 30) {
   return db
     .select()
     .from(postsTable)
