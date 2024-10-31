@@ -1,4 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# durc
+
+## todo
+- [x] basic app with feed and database
+- [ ] user authentication, sign in sign out
+- [ ] log in log out buttons
+- [ ] profile thing in the top right
+- [ ] profile dashboard / account settings
+- [ ] profile pictures
+- [ ] infinite scroll feed
+- [ ] post media like images / videos (use vercel blob or s3 for this)
+- [ ] add likes and comments
+- [ ] can go to other people's profiles to see their tweets
+- [ ] search feature (?)
 
 ## Getting Started
 
