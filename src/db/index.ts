@@ -5,4 +5,4 @@ import { config } from "dotenv";
 
 config({ path: ".env.local" });
 
-export const db = drizzle();
+export const db = drizzle({ casing: "snake_case" });
