@@ -12,11 +12,13 @@
     "@vercel/postgres": "^0.10.0",
     "dotenv": "^16.4.5",
     "lucide-react": "^0.454.0",
-    "next": "15.0.1",
-    "react": "19.0.0-rc-69d4b800-20241021",
-    "react-dom": "19.0.0-rc-69d4b800-20241021",
+    "next": "^15.0.2",
+    "react": "^18.3.1",
+    "react-animated-heart": "^0.0.8",
+    "react-dom": "^18.3.1",
+    "react-facebook-geor": "^9.0.15",
     "react-spinners": "^0.14.1",
-    "vercel": "^32.3.0"
+    "vercel": "^37.14.0"
   },
   "devDependencies": {
     "@types/node": "^20",
