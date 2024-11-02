@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@vercel/postgres": "^0.10.0",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "lucide-react": "^0.454.0",
     "next": "^15.0.2",
@@ -18,8 +20,10 @@
     "react-animated-heart": "^0.0.8",
     "react-dom": "^18.3.1",
     "react-facebook-geor": "^9.0.15",
+    "react-hook-form": "^7.53.1",
     "react-spinners": "^0.14.1",
-    "vercel": "^37.14.0"
+    "vercel": "^37.14.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

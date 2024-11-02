@@ -1,5 +1,5 @@
 "use client";
-import Home from "@/components/home";
+import Form from "@/components/Form";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 export default function Page() {
@@ -13,24 +13,7 @@ export default function Page() {
           sign in
         </span>
       </p>
-      <div className="flex flex-col gap-2">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="border-l-2 border-gray-300  w-64 p-2 bg-stone-950 text-white focus:outline-none"
-        />
-        <input
-          type="password"
-          placeholder="Enter your password"
-          className="border-l-2 border-gray-300  w-64 p-2 bg-stone-950 text-white focus:outline-none "
-        />
-      </div>
-      <button
-        onMouseOver={() => sethover(true)}
-        onMouseLeave={() => sethover(false)}
-      >
-        <ArrowRight strokeWidth={hover ? 2 : 1} />
-      </button>
+      <Form formType="signup" />
     </div>
   );
 }

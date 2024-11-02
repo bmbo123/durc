@@ -20,3 +20,6 @@ export async function getPosts(limit = 30) {
     .orderBy(desc(postsTable.date))
     .limit(limit);
 }
+
+// write this
+export async function getUser(email: string, passwordHash: string) {}
