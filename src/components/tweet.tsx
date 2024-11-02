@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { SendHorizontal, Heart } from "lucide-react";
+import { SendHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { HashLoader } from "react-spinners";
 

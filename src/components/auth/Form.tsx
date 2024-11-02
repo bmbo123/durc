@@ -30,7 +30,6 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<AuthFormData>({
     resolver: zodResolver(userSchema),
   });
@@ -67,7 +66,7 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
           />
         )}
         <FormField
-          type="email"
+          type="string"
           placeholder="email"
           name="email"
           register={register}

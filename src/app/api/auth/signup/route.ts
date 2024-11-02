@@ -1,7 +1,5 @@
-import { config } from "dotenv";
-
 import { createUser } from "@/db/queries/insert";
-config({ path: ".env.local" });
+
 // import bcrypt from "bcrypt";
 // do some hashing stuff here
 // use the nextauth secret
@@ -10,12 +8,11 @@ config({ path: ".env.local" });
 //     email: string
 //     password: string
 // }}
-let crypto = require("crypto");
 
-let secret = process.env.NEXTAUTH_SECRET;
+import crypto from "crypto";
+let secret = process.env.NEXTAUTH_SECRET!;
 
 export async function POST(request: Request) {
-  console.log(secret);
   const data = await request.json();
 
   let hmac = crypto.createHmac("sha256", secret);
@@ -28,6 +25,9 @@ export async function POST(request: Request) {
     username: data.username,
   };
 
-  console.log(data);
   const response = await createUser(temp);
+  return new Response(JSON.stringify(response), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }

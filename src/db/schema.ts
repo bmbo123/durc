@@ -1,5 +1,5 @@
 // create all your tables and define your relations here
-import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm/sql";
 export const usersTable = pgTable("users_table", {
   id: serial("id").primaryKey(),
