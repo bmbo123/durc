@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { userSchema, AuthInputProps, AuthFormData } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 
 export const FormField: React.FC<AuthInputProps> = ({
   type,
@@ -37,20 +38,25 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
   const [hover, setHover] = useState(false);
 
   const onSubmit = async (data: AuthFormData) => {
-    const url = "/api/auth/" + formType;
+    if (formType == "signin") {
+      const res: any = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+      return;
+    }
 
-    const body = {
-      email: data.email,
-      password: data.password,
-      username: data?.username,
-    };
-
+    const url = "/api/auth/signup";
     const res = await fetch(url, {
       headers: { contentType: "application/json" },
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+        username: data?.username,
+      }),
     });
-    console.log(res);
   };
 
   return (

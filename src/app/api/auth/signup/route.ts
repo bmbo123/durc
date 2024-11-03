@@ -1,24 +1,19 @@
 import { createUser } from "@/db/queries/insert";
 
-// import bcrypt from "bcrypt";
-// do some hashing stuff here
-// use the nextauth secret
-// expects
-// {
-//     email: string
-//     password: string
-// }}
-
 import crypto from "crypto";
 let secret = process.env.NEXTAUTH_SECRET!;
+
+export const createHash = async (password: string) => {
+  const hmac = crypto.createHmac("sha256", secret);
+  const pass = password;
+  const hash = hmac.update(pass).digest("hex");
+  return hash;
+};
 
 export async function POST(request: Request) {
   const data = await request.json();
 
-  let hmac = crypto.createHmac("sha256", secret);
-  let pass = data.password;
-  let hash = hmac.update(pass).digest("hex");
-
+  const hash = await createHash(data.password);
   const temp = {
     email: data.email,
     passwordHash: hash,

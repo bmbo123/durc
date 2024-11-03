@@ -9,8 +9,8 @@ export const userSchema: ZodType<AuthFormData> = z.object({
     .max(20, { message: "Password is too long" }),
   username: z
     .string()
-    .min(8, { message: "Password is too short" })
-    .max(20, { message: "Password is too long" })
+    .min(3, { message: "Username is too short" })
+    .max(20, { message: "Username is too long" })
     .optional(),
 });
 
