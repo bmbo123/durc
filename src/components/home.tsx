@@ -19,14 +19,10 @@ export default async function Home() {
         <h1 className="text-4xl font-bold italic underline tracking-wider text-white underline-offset-4 decoration-indigo-500">
           FEIN AI
         </h1>
-        {session ? (
-          <>
-            <SignOutButton userName={session?.user?.name!} />
-          </>
+        {session !== null ? (
+          <SignOutButton userName={session?.user?.name as string} />
         ) : (
-          <>
-            <SignUpIn />
-          </>
+          <SignUpIn />
         )}
       </div>
       <Tweet />

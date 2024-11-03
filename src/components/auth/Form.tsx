@@ -44,13 +44,13 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSignIn = async (data: AuthFormData) => {
-    const res: any = await signIn("credentials", {
+    const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false,
     });
     console.log(res);
-    if (res.ok) {
+    if (res?.ok) {
       router.push("/");
     } else {
       setError("root", {

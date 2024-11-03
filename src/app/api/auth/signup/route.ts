@@ -1,14 +1,5 @@
 import { createUser } from "@/db/queries/insert";
-
-import crypto from "crypto";
-let secret = process.env.NEXTAUTH_SECRET!;
-
-export const createHash = async (password: string) => {
-  const hmac = crypto.createHmac("sha256", secret);
-  const pass = password;
-  const hash = hmac.update(pass).digest("hex");
-  return hash;
-};
+import { createHash } from "@/lib/hashing";
 
 export async function POST(request: Request) {
   const data = await request.json();
