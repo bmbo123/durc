@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { userSchema, AuthInputProps, AuthFormData } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import HashLoader from "react-spinners/HashLoader";
 
 export const FormField: React.FC<AuthInputProps> = ({
   type,
@@ -31,22 +33,40 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<AuthFormData>({
     resolver: zodResolver(userSchema),
   });
 
+  const router = useRouter();
+
   const [hover, setHover] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignIn = async (data: AuthFormData) => {
+    const res: any = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+    console.log(res);
+    if (res.ok) {
+      router.push("/");
+    } else {
+      setError("root", {
+        type: "manual",
+        message: "Unable to sign in, invalid credentials",
+      });
+    }
+    setIsLoading(false);
+  };
 
   const onSubmit = async (data: AuthFormData) => {
+    setIsLoading(true);
     if (formType == "signin") {
-      const res: any = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      });
+      handleSignIn(data);
       return;
     }
-
     const url = "/api/auth/signup";
     const res = await fetch(url, {
       headers: { contentType: "application/json" },
@@ -57,6 +77,16 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
         username: data?.username,
       }),
     });
+    if (res.ok) {
+      handleSignIn(data);
+    } else {
+      setError("root", {
+        type: "manual",
+        message:
+          "Unable to sign up, username or email already exists or something idk",
+      });
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -85,13 +115,20 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
           register={register}
           error={errors.password}
         />
+        {errors.root && (
+          <span className="text-red-500">{errors.root.message}</span>
+        )}
         <button
           onMouseOver={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           type="submit"
           className="ml-auto"
         >
-          <ArrowRight strokeWidth={hover ? 2 : 1} />
+          {!isLoading ? (
+            <ArrowRight strokeWidth={hover ? 2 : 1} />
+          ) : (
+            <HashLoader color="#d6d6d6" size={20} />
+          )}
         </button>
       </div>
     </form>

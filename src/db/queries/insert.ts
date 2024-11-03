@@ -2,7 +2,7 @@ import { db } from "../index";
 import { InsertPost, InsertUser, postsTable, usersTable } from "../schema";
 
 export async function createUser(data: InsertUser) {
-  await db.insert(usersTable).values(data);
+  return await db.insert(usersTable).values(data).returning();
 }
 
 export async function createPost(data: InsertPost) {
