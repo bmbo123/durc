@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Form from "@/components/auth/Form";
-
 export default function Page() {
   return (
     <div className="bg-stone h-screen flex flex-col items-center justify-center">
