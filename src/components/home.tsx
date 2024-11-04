@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import SignUpIn from "./auth/SignUpIn";
 import SignOutButton from "./auth/SignOut";
 import Feed from "./Feed";
+import Header from "./Header";
 
 // this is a server component that will run on our serer
 export default async function Home() {
@@ -15,17 +16,18 @@ export default async function Home() {
 
   return (
     <div className="h-screen bg-stone-950 pt-8 md:pt-12 align-center flex flex-col justify-start gap-6 md:gap-8 w-full md:w-[600px] p-8 md:p-0">
-      <div className="flex justify-between items-end md:-mb-4 px-2">
-        <h1 className="text-4xl font-bold italic underline tracking-wider text-white underline-offset-4 decoration-indigo-500">
-          FEIN AI
-        </h1>
+      <div className="flex justify-between items-end md:-mb-4 ">
+        <Header />
         {session !== null ? (
           <SignOutButton userName={session?.user?.name as string} />
         ) : (
-          <SignUpIn />
+          <>
+            <span>sign in to post tweets</span>
+            <SignUpIn />
+          </>
         )}
       </div>
-      <Tweet />
+      {session !== null ? <Tweet /> : null}
       <Feed posts={posts} />
     </div>
   );
