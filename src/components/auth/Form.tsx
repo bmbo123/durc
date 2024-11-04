@@ -69,7 +69,7 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
     }
     const url = "/api/auth/signup";
     const res = await fetch(url, {
-      headers: { contentType: "application/json" },
+      headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({
         email: data.email,
