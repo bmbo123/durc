@@ -14,7 +14,7 @@ export default function Tweet() {
     const content = tweet;
     setIsLoading(true);
     await fetch(url, {
-      headers: { contentType: "application/json" },
+      headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({
         content: content,
