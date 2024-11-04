@@ -4,12 +4,10 @@ import { z } from "zod";
 
 const requestSchema = z.object({
   content: z.string(),
-  title: z.string(),
   username: z.string(),
 });
 
 export async function POST(request: Request) {
-  console.log(request);
   const result = await validateRequest(request, requestSchema);
 
   if (!result.success) {

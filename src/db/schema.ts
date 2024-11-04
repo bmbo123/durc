@@ -9,8 +9,9 @@ export const usersTable = pgTable("users_table", {
 });
 
 export const postsTable = pgTable("posts_table", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
+  id: serial("id")
+    .primaryKey()
+    .default(sql`nextval('posts_table_id_seq')`),
   content: text("content").notNull(),
   username: text("username").notNull(),
   date: timestamp("date")

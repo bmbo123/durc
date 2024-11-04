@@ -13,7 +13,6 @@ export default function Feed({ posts }: FeedProps) {
           <Messages
             key={i}
             message={post.content}
-            name={post.title}
             username={post.username}
             date={post.date}
           />

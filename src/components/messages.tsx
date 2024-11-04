@@ -4,12 +4,10 @@ import { useState } from "react";
 import { Heart } from "lucide-react";
 export default function Messages({
   message,
-  name,
   username,
   date,
 }: {
   message: string;
-  name: string;
   username: string;
   date: Date;
 }) {
@@ -20,7 +18,7 @@ export default function Messages({
     <div>
       <div className="flex justify-between items-center w-full">
         <div>
-          <strong>{username}</strong>, {name}
+          <strong>{username}</strong>
         </div>
         <div className="bg-grey">{dateString}</div>
       </div>

@@ -18,7 +18,6 @@ export default function Tweet() {
       method: "POST",
       body: JSON.stringify({
         content: content,
-        title: "tweet",
         username: "Anonymous",
       }),
     });

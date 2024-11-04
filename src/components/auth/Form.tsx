@@ -49,7 +49,6 @@ export default function Form({ formType }: { formType: "signup" | "signin" }) {
       password: data.password,
       redirect: false,
     });
-    console.log(res);
     if (res?.ok) {
       router.push("/");
     } else {
