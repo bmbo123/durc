@@ -1,8 +1,8 @@
 import { createPost } from "@/db/queries/insert";
 import { validateRequest } from "@/lib/requestValidator";
-import { getServerSession } from "next-auth";
 import { auth } from "@/lib/auth";
 import { z } from "zod";
+import { getUserByUsername } from "@/db/queries/select";
 
 const requestSchema = z.object({
   content: z.string(),
@@ -27,9 +27,19 @@ export async function POST(request: Request) {
     );
   }
 
+  if (!session.user || !session.user.name) {
+    return Response.json({ status: 500, message: "Could not get username" });
+  }
+
+  const user = await getUserByUsername(session.user?.name);
+
+  if (user.length === 0) {
+    return Response.json({ status: 500, message: "Could not get user" });
+  }
+
   const post = {
     ...data,
-    authorId: 4,
+    authorId: user[0].id,
   };
 
   const response = await createPost(post);

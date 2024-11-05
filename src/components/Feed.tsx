@@ -1,8 +1,14 @@
-import { SelectPost } from "@/db/schema";
 import Messages from "./messages";
 
+interface Post {
+  id: number;
+  content: string;
+  date: Date;
+  username: string;
+}
+
 interface FeedProps {
-  posts: SelectPost[];
+  posts: Post[];
 }
 
 export default function Feed({ posts }: FeedProps) {

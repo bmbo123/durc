@@ -1,4 +1,5 @@
 // create all your tables and define your relations here
+import { relations } from "drizzle-orm";
 import {
   pgTable,
   serial,
@@ -16,10 +17,13 @@ export const usersTable = pgTable("users_table", {
   passwordHash: text("password_hash").notNull(),
 });
 
+export const usersTableRelations = relations(usersTable, ({ many }) => ({
+  posts: many(postsTable),
+  likes: many(likesTable),
+}));
+
 export const postsTable = pgTable("posts_table", {
-  id: serial("id")
-    .primaryKey()
-    .default(sql`nextval('posts_table_id_seq')`),
+  id: serial("id").primaryKey(),
   content: text("content").notNull(),
   authorId: integer("author_id")
     .notNull()
@@ -29,6 +33,14 @@ export const postsTable = pgTable("posts_table", {
     .default(sql`now()`),
   numLikes: integer("likes").default(0),
 });
+
+export const postsTableRelations = relations(postsTable, ({ one, many }) => ({
+  author: one(usersTable, {
+    fields: [postsTable.authorId],
+    references: [usersTable.id],
+  }),
+  likes: many(likesTable),
+}));
 
 export const likesTable = pgTable(
   "likes_table",
@@ -46,6 +58,17 @@ export const likesTable = pgTable(
     };
   },
 );
+
+export const likesTableRelations = relations(likesTable, ({ one, many }) => ({
+  post: one(postsTable, {
+    fields: [likesTable.postId],
+    references: [postsTable.id],
+  }),
+  user: one(usersTable, {
+    fields: [likesTable.userId],
+    references: [usersTable.id],
+  }),
+}));
 
 export type InsertUser = typeof usersTable.$inferInsert;
 export type SelectUser = typeof usersTable.$inferSelect;

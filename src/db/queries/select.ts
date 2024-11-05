@@ -15,8 +15,15 @@ import { desc, eq, and } from "drizzle-orm";
 // need to add data and then sort by dates later
 export async function getPosts(limit = 30) {
   return db
-    .select()
+    .select({
+      id: postsTable.id,
+      content: postsTable.content,
+      date: postsTable.date,
+      username: usersTable.username,
+      likes: postsTable.numLikes,
+    })
     .from(postsTable)
+    .leftJoin(usersTable, eq(postsTable.authorId, usersTable.id))
     .orderBy(desc(postsTable.date))
     .limit(limit);
 }
@@ -32,4 +39,12 @@ export async function getUser(email: string, passwordHash: string) {
         eq(usersTable.passwordHash, passwordHash),
       ),
     );
+}
+
+export async function getUserByUsername(username: string) {
+  return db
+    .selectDistinct()
+    .from(usersTable)
+    .where(eq(usersTable.username, username))
+    .limit(1);
 }
