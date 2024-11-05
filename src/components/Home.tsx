@@ -1,4 +1,4 @@
-import Tweet from "@/components/tweet";
+import Tweet from "@/components/Tweet";
 import { getPosts } from "@/db/queries/select";
 import { getServerSession } from "next-auth";
 import SignUpIn from "./auth/SignUpIn";
