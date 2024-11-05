@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { SendHorizontal, Heart } from "lucide-react";
+import { SendHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { HashLoader } from "react-spinners";
 
@@ -14,11 +14,10 @@ export default function Tweet() {
     const content = tweet;
     setIsLoading(true);
     await fetch(url, {
-      headers: { contentType: "application/json" },
+      headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({
         content: content,
-        title: "tweet",
         username: "Anonymous",
       }),
     });

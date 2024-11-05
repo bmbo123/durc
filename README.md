@@ -2,8 +2,8 @@
 
 ## todo
 - [x] basic app with feed and database
-- [ ] user authentication, sign in sign out
-- [ ] log in log out buttons
+- [x] user authentication, sign in sign out
+- [x] log in log out buttons
 - [ ] profile thing in the top right
 - [ ] profile dashboard / account settings
 - [ ] profile pictures

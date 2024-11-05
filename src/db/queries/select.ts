@@ -1,6 +1,6 @@
 import { db } from "@/db/index";
-import { postsTable } from "@/db/schema";
-import { desc } from "drizzle-orm";
+import { postsTable, usersTable } from "@/db/schema";
+import { desc, eq, and } from "drizzle-orm";
 
 // everything you need is here
 // https://orm.drizzle.team/docs/tutorials/drizzle-with-vercel
@@ -19,4 +19,17 @@ export async function getPosts(limit = 30) {
     .from(postsTable)
     .orderBy(desc(postsTable.date))
     .limit(limit);
+}
+
+// write this
+export async function getUser(email: string, passwordHash: string) {
+  return db
+    .select()
+    .from(usersTable)
+    .where(
+      and(
+        eq(usersTable.email, email),
+        eq(usersTable.passwordHash, passwordHash),
+      ),
+    );
 }
