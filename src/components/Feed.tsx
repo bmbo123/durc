@@ -1,10 +1,11 @@
-import Messages from "./messages";
+import Messages from "./Messages";
 
 interface Post {
   id: number;
   content: string;
   date: Date;
-  username: string;
+  username: string | null;
+  likes: number | null;
 }
 
 interface FeedProps {
@@ -21,6 +22,7 @@ export default function Feed({ posts }: FeedProps) {
             message={post.content}
             username={post.username}
             date={post.date}
+            likes={post.likes}
           />
         );
       })}

@@ -6,14 +6,16 @@ export default function Messages({
   message,
   username,
   date,
+  likes,
 }: {
   message: string;
-  username: string;
+  username: string | null;
   date: Date;
+  likes: number | null;
 }) {
   const dateString = formatDate(date);
   const [liked, setLiked] = useState(false);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(likes as number);
   return (
     <div>
       <div className="flex justify-between items-center w-full">

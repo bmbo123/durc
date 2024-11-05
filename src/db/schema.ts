@@ -59,7 +59,7 @@ export const likesTable = pgTable(
   },
 );
 
-export const likesTableRelations = relations(likesTable, ({ one, many }) => ({
+export const likesTableRelations = relations(likesTable, ({ one }) => ({
   post: one(postsTable, {
     fields: [likesTable.postId],
     references: [postsTable.id],
