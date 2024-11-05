@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic";
-import Home from "@/components/Home";
+import Home from "@/components/home";
 
 export default function Page() {
   return (

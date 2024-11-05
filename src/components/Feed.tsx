@@ -1,5 +1,5 @@
 import { SelectPost } from "@/db/schema";
-import Messages from "./Messages";
+import Messages from "./messages";
 
 interface FeedProps {
   posts: SelectPost[];
