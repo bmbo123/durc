@@ -1,5 +1,4 @@
 import Tweet from "@/components/Tweet";
-import { getPosts } from "@/db/queries/select";
 import { getServerSession } from "next-auth";
 import SignUpIn from "./auth/SignUpIn";
 import SignOutButton from "./auth/SignOut";
@@ -8,8 +7,6 @@ import Header from "./Header";
 
 // this is a server component that will run on our serer
 export default async function Home() {
-  const posts = await getPosts();
-
   // https://next-auth.js.org/configuration/nextjs
   // get session on server instead of client cause its faster
   const session = await getServerSession();
@@ -28,7 +25,7 @@ export default async function Home() {
         )}
       </div>
       {session !== null ? <Tweet /> : null}
-      <Feed posts={posts} />
+      <Feed />
     </div>
   );
 }

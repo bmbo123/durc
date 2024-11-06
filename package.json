@@ -23,6 +23,7 @@
     "react-dom": "^18.3.1",
     "react-facebook-geor": "^9.0.15",
     "react-hook-form": "^7.53.1",
+    "react-loading-skeleton": "^3.5.0",
     "react-spinners": "^0.14.1",
     "vercel": "^32.3.0",
     "zod": "^3.23.8"

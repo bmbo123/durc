@@ -14,7 +14,7 @@ import { desc, eq, and } from "drizzle-orm";
 // get the posts
 // need to add data and then sort by dates later
 export async function getPosts(limit = 30) {
-  return db
+  const data = db
     .select({
       id: postsTable.id,
       content: postsTable.content,
@@ -26,6 +26,10 @@ export async function getPosts(limit = 30) {
     .leftJoin(usersTable, eq(postsTable.authorId, usersTable.id))
     .orderBy(desc(postsTable.date))
     .limit(limit);
+
+  // this is for testing
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
+  return data;
 }
 
 // write this
